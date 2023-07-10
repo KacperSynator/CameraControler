@@ -5,13 +5,13 @@ FROM rust:latest
 RUN apt-get update
 
 # Install OpenCV dependencies
-RUN apt-get install libopencv-dev clang libclang-dev
+RUN apt-get -y install libopencv-dev clang libclang-dev
 
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy the project files into the container
-COPY . .
+COPY ./camera_controller /app
 
 # Build and run your Rust application
 CMD cargo run
