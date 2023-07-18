@@ -14,6 +14,6 @@ sudo usermod -aG docker <username>
 # build docker image
 docker build -t camera_controller_image .
 
-# run docker
-docker run camera_controller_image
+# run docker with connected camera
+docker run --device=/dev/video0 camera_controller_image 
 ```
