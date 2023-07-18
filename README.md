@@ -12,7 +12,7 @@ sudo usermod -aG docker <username>
 # logout and login to apply changes
 
 # build docker image
-docker build -t camera_controller_image .
+docker build --network host -t camera_controller_image .
 
 # run docker with connected camera
 docker run --device=/dev/video0 camera_controller_image 
