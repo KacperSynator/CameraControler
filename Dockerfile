@@ -10,7 +10,7 @@ WORKDIR /app
 # Copy the project files into the container
 COPY ./camera_controller /app
 
-# Build the application code (e.g., cargo build)
+# Build the application code
 RUN cargo build
 
 # Set the entrypoint
