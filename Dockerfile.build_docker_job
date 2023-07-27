@@ -1,0 +1,13 @@
+FROM kakkosbp/camera-controller-image:latest
+
+# Set the working directory inside the container
+WORKDIR /workspace
+
+# Copy the project files into the container
+COPY ./camera_controller /workspace
+
+# Build the application code (e.g., cargo build)
+RUN cargo build
+
+# Set the entrypoint
+CMD cargo run
