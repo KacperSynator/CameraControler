@@ -8,26 +8,6 @@ on:
     branches: [ "*" ]
 
 jobs:
-  build_and_push_docker_base:
-    if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'build & push docker.base' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build and push Docker image
-        run: |
-          docker buildx build --platform linux/arm/v7 --file Dockerfile.base --tag ${{ secrets.DOCKER_USERNAME }}/camera-controller_image_base:latest \
-          --tag ${{ secrets.DOCKER_USERNAME }}/camera-controller_image_base:latest --push .
-            
-
   build_and_push_docker:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'build & push docker' }}
@@ -44,8 +24,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push Docker image
         run: |
-          docker buildx build --platform linux/arm/v7 --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/camera-controller_image:$(date +%s) \
-          --tag ${{ secrets.DOCKER_USERNAME }}/camera-controller_image:latest --push .
+          docker buildx build --platform linux/arm/v7 --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/camera-controller-image:$(date +%s) \
+          --tag ${{ secrets.DOCKER_USERNAME }}/camera-controller-image:latest --push .
   
   
   build_docker:
@@ -62,6 +42,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build and push Docker image
+      - name: Build Docker
         run: |
-          docker buildx build --platform linux/arm/v7 --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/camera-controller_image:$(date +%s) .
+          docker pull ${{ secrets.DOCKER_USERNAME }}/camera-controller-image:latest
+          docker buildx build --platform linux/arm/v7 --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/camera-controller-image:latest .
