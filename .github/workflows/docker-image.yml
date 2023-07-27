@@ -44,5 +44,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker
         run: |
-          docker pull ${{ secrets.DOCKER_USERNAME }}/camera-controller-image:latest
+          docker pull --platform linux/arm/v7 ${{ secrets.DOCKER_USERNAME }}/camera-controller-image:latest
           docker buildx build --platform linux/arm/v7 --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/camera-controller-image:latest .
