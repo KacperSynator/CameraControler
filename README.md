@@ -5,9 +5,9 @@ Main functions of the app are:
 * Taking pictures
 * Streaming videos
 * Using OpenCV for detecting objects
+* Control the camera via MQTT
 
 ### Docker
-
 
 #### Setup docker and pull image
 ```bash
@@ -19,13 +19,13 @@ sudo usermod -aG docker <username>
 # logout and login to apply changes
 
 # pull docker image
-docker pull kakkosbp/camer-trap_image:latest
+docker pull kakkosbp/camera-controller-image:latest
 ```
 
 #### Run docker image
 ```bash
 # to run the app use, make sure that camera is connected to /dev/video0
-docker run --device=/dev/video0 kakkosbp/camera-controller_image:latest
+docker run --device=/dev/video0 kakkosbp/camera-controller-image:latest
 
 ```
 
