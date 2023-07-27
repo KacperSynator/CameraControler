@@ -37,7 +37,7 @@ cd CameraController
 
 # for development purposes use interactive session, make sure that camera is connected to /dev/video0
 docker run -it --volume "$(pwd)/camera_controller:/workspace" --device=/dev/video0 \
- kakkosbp/camera-controller_image:latest /bin/bash
+ kakkosbp/camera-controller-image:latest /bin/bash
 
 # from inside the image you can build and run the app
 cd workspace && cargo run
