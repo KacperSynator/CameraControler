@@ -40,5 +40,5 @@ docker run -it --volume "$(pwd)/camera_controller:/workspace" --device=/dev/vide
  kakkosbp/camera-controller-image:latest /bin/bash
 
 # from inside the image you can build and run the app
-cd workspace && cargo run
+cargo run
 ```

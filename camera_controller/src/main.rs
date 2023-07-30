@@ -1,11 +1,15 @@
 use opencv::{imgcodecs, prelude::*, videoio, Result};
+use std::error::Error;
+use log::{error, info};
 
-fn main() -> Result<()> {
+fn main() -> Result<(), Box<dyn Error>> {
+    pretty_env_logger::init();
+
     // Open the camera
     let mut cam = videoio::VideoCapture::new(0, videoio::CAP_ANY)?; // 0 is the default camera
     let opened = videoio::VideoCapture::is_opened(&cam)?;
 	if !opened {
-		panic!("Unable to open default camera!");
+        error!("Unable to open default camera!");
 	}
 
     // Create a Mat to store the captured frame
@@ -18,10 +22,9 @@ fn main() -> Result<()> {
     if frame.size()?.width > 0 {
         // Save the frame as an image file
         imgcodecs::imwrite("output.jpg", &frame, &opencv::types::VectorOfi32::new()).unwrap();
-
-        println!("Image saved successfully");
+        info!("Image saved successfully");
     } else {
-        println!("Failed to capture frame from the camera");
+        error!("Failed to capture frame from the camera");
     }
 
     Ok(())
