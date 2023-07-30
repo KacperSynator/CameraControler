@@ -12,6 +12,9 @@ RUN apt-get -y install libopencv-dev clang libclang-dev libraspberrypi0 libraspb
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
+# Set log level to info
+ENV RUST_LOG=info
+
 # Set the working directory inside the container
 WORKDIR /workspace
 
