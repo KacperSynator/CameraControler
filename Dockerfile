@@ -5,8 +5,8 @@ FROM balenalib/raspberry-pi:latest
 RUN apt-get update
 
 # Install dependencies
-RUN apt-get -y install libopencv-dev clang libclang-dev libraspberrypi0 libraspberrypi-dev libraspberrypi-bin \
-    libglib2.0-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstrtspserver-1.0-dev libcamera-apps
+RUN apt-get -y install libopencv-dev clang libclang-dev libglib2.0-dev gstreamer1.0-rtsp libgstreamer1.0-dev \
+ libgstreamer-plugins-base1.0-dev libgstrtspserver-1.0-dev gstreamer1.0-plugins-ugly gstreamer1.0-tools
 
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

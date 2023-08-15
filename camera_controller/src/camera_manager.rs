@@ -1,4 +1,4 @@
-use log::{error, info};
+use log::error;
 use opencv::{prelude::*, videoio, Result};
 use std::error::Error;
 use std::fmt;
@@ -55,7 +55,6 @@ impl CameraManager {
             )));
         }
 
-        info!("Frame read successfully");
         Ok(frame)
     }
 }
